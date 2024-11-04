@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Doctors</title>
+    <style>
+        /* Reset styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Body styling */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        /* Header styling */
+        h1 {
+            margin-bottom: 20px;
+            color: #333;
+            font-style: italic;
+        }
+
+        /* Back to Home link */
+        a {
+            color: #4CAF50;
+            text-decoration: none;
+            font-weight: bold;
+            margin-bottom: 20px;
+            display: inline-block;
+            transition: color 0.3s;
+        }
+
+        a:hover {
+            color: #388E3C;
+        }
+
+        /* Form styling */
+        form {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            margin-bottom: 20px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        /* Doctor list styling */
+        ul {
+            list-style: none;
+            width: 100%;
+            max-width: 400px;
+            padding: 0;
+        }
+
+        li {
+            background-color: white;
+            margin-bottom: 10px;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        li a {
+            color: #f44336;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        li a:hover {
+            color: #d32f2f;
+        }
+    </style>
+</head>
+<body>
+    <h1>Manage Doctors</h1>
+    <a href="/">Back to Home</a>
+
+    <form method="POST">
+        <input type="text" name="name" placeholder="Doctor Name" required>
+        <input type="text" name="specialty" placeholder="Specialty" required>
+        <button type="submit">Add Doctor</button>
+    </form>
+
+    <ul>
+        {% for doctor in doctors %}
+        <li>
+            {{ doctor['name'] }} - {{ doctor['specialty'] }}
+            <a href="/delete_doctor/{{ doctor['id'] }}">Delete</a>
+        </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

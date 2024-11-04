@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Billing</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            width: 80%;
+            margin: 20px auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        h3 {
+            margin-top: 20px;
+            color: #555;
+        }
+
+        form {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin: 10px 0 5px;
+            color: #555;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        input[type="date"],
+        select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            background-color: #5cb85c;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #4cae4c;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+            color: #333;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Billing Management</h2>
+        <form method="POST">
+            <label>Patient Name:</label>
+            <input type="text" name="patient_name" required><br>
+            
+            <label>Service Charge ($):</label>
+            <input type="number" name="service_charge" step="0.01" required><br>
+            
+            <label>Medicine Charge ($):</label>
+            <input type="number" name="medicine_charge" step="0.01" required><br>
+            
+            <label>Room Charge ($):</label>
+            <input type="number" name="room_charge" step="0.01" required><br>
+            
+            <label>Tax (%):</label>
+            <input type="number" name="tax" step="0.01" required><br>
+            
+            <button type="submit">Generate Bill</button>
+        </form>
+        
+        <h3>Billing Records</h3>
+        <table>
+            <tr>
+                <th>Patient Name</th>
+                <th>Service Charge</th>
+                <th>Medicine Charge</th>
+                <th>Room Charge</th>
+                <th>Tax</th>
+                <th>Total Cost</th>
+                <th>Billing Date</th>
+            </tr>
+            {% for bill in bills %}
+            <tr>
+                <td>{{ bill['patient_name'] }}</td>
+                <td>{{ bill['service_charge'] }}</td>
+                <td>{{ bill['medicine_charge'] }}</td>
+                <td>{{ bill['room_charge'] }}</td>
+                <td>{{ bill['tax'] }}</td>
+                <td>{{ bill['total_cost'] }}</td>
+                <td>{{ bill['billing_date'] }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</body>
+</html>
